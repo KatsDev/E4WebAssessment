@@ -1,0 +1,84 @@
+﻿@model CRUD_XML.Models.PersonsModel
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <center><h4 class="modal-title" id="myModalLabel">Contact Management</h4></center>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md12">
+                    <div class="row">
+                        <div class="col-md-4">First Name</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", id = "txtFirstName", style = "width:100%;" })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger", id = "lblnameErr" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md12">
+                    <div class="row">
+                        <div class="col-md-4">Last Name</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", id = "txtLastName", style = "width:100%;" })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger", id = "lbllastnameErr" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md12">
+                    <div class="row">
+                        <div class="col-md-4">Contact Number</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(x => x.ContactNumber, new { @class = "form-control", id = "txtContactNumber", style = "width:100%;" })
+                            @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger", id = "lblcontactNumErr" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <br />
+        </div>
+        @Html.HiddenFor(x => x.ID, new { id = "hdID" })
+        <div class="modal-footer">
+            @if (Model.ID == 0)
+            {
+                <button onclick="SavePerson()" type="button" class="btn btn-primary">Save</button>
+            }
+            else
+            {
+                <button onclick="UpdatePerson()" type="button" class="btn btn-primary">Update</button>
+            }
+
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>
+<script>
+    $("#txtFirstName").change(function () {
+        $('#txtFirstName').css('border-color', '');
+        $('#lblnameErr').hide();
+    });
+    $("#txtLastName").change(function () {
+        $('#txtLastName').css('border-color', '');
+        $('#lbllastnameErr').hide('');
+    });
+    $("#txtContactNumber").change(function () {
+        $('#txtContactNumber').css('border-color', '');
+        $('#lblcontactNumErr').hide('');
+    });
+</script>

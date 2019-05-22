@@ -1,0 +1,57 @@
+﻿@model CRUD_XML.Models.PersonsModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Contact Management</h2>
+<div class="row">
+    <div class="col-md-2">First Name</div>
+    <br />
+    <div class="col-md-6">
+        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", id = "txtFirstName" })
+        @Html.HiddenFor(x => x.ID, new { id = "hdID" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">Last Name</div>
+    <br />
+    <div class="col-md-6">
+        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", id = "txtLastName" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">Contact Number</div>
+    <br />
+    <div class="col-md-6">
+        @Html.TextBoxFor(x => x.ContactNumber, new { @class = "form-control", id = "txtContactNumber" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" id="btnSave" class="btn btn-primary" onclick="Persons.Test()">Save</button>
+        <button type="button" id="btnUpdate" class="btn btn-danger">Cancel</button>
+    </div>
+</div>*@
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary" onclick="AddPerson()">Add Person</button>
+    </div>
+</div>
+<br />
+<div id="personKendo">
+</div>
+
+<div class="modal fade" id="PersonMainModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div id='PersonDetailContent'>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/ViewScripts/Person/PersonsIndex.js"></script>
+}
