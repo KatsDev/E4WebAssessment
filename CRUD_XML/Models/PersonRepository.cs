@@ -26,6 +26,9 @@ namespace CRUD_XML.Models
             {
                 //Lets create a persons list
                 allPersons = new List<PersonsModel>();
+                bool exists = System.IO.Directory.Exists(HttpContext.Current.Server.MapPath("App_Data"));
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(HttpContext.Current.Server.MapPath("App_Data"));
                 //Get the data from the data source
                 if (File.Exists(HttpContext.Current.Server.MapPath(this.fileName)))
                 {
