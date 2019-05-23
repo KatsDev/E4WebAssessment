@@ -56,7 +56,7 @@ function SavePerson() {
 //}
 
 function AddPerson() {
-    $.get("Persons/AddNewPerson", function (data) {
+    $.get("Persons/AddNewPerson/" + 0, function (data) {
         $("#PersonDetailContent").html(data);
         $("#PersonMainModal").modal("show");
     });
