@@ -26,12 +26,16 @@ namespace CRUD_XML.Models
             {
                 //Lets create a persons list
                 allPersons = new List<PersonsModel>();
+
+                //Check if the App_Data folder exists
                 bool exists = System.IO.Directory.Exists(HttpContext.Current.Server.MapPath("App_Data"));
+                //If App_Data folder does not exist then create it
                 if (!exists)
                     System.IO.Directory.CreateDirectory(HttpContext.Current.Server.MapPath("App_Data"));
-                //Get the data from the data source
+                //Get the data from the data source if the file exists
                 if (File.Exists(HttpContext.Current.Server.MapPath(this.fileName)))
                 {
+                    //Load data into XML document
                     PersonsData = XDocument.Load(HttpContext.Current.Server.MapPath(this.fileName));
                     var Persons = from t in PersonsData.Descendants("Item")
                                   select new PersonsModel((int)t.Element("ID"),
@@ -45,13 +49,8 @@ namespace CRUD_XML.Models
                 {
                     using (XmlWriter writer = XmlWriter.Create(HttpContext.Current.Server.MapPath(this.fileName)))
                     {
+                        //Create empty XML file with User Root if file does not exist
                         writer.WriteStartElement("Users");
-                        //writer.WriteStartElement("Item");
-                        //writer.WriteElementString("ID", "1");
-                        //writer.WriteElementString("FirstName", "Faheem Kathrada");
-                        //writer.WriteElementString("LastName", "Kathrada");
-                        //writer.WriteElementString("ContactNumber", "0739131826");
-                        //writer.WriteEndElement();
                         writer.Flush();
                     }
                 }
@@ -113,10 +112,8 @@ namespace CRUD_XML.Models
         {
             try
             {
-
                 //Find the person by their ID from the data source
                 XElement node = PersonsData.Root.Elements("Item").Where(i => (int)i.Element("ID") == Person.ID).FirstOrDefault();
-
                 //Update the information below
                 node.SetElementValue("FirstName", Person.FirstName);
                 node.SetElementValue("LastName", Person.LastName);
